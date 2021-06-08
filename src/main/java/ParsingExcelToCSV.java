@@ -13,6 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ParsingExcelToCSV {
+    private static final Logger log = LoggerFactory.getLogger(ParsingExcelToCSV.class);
 
     public static void main(String[] args) {
 
