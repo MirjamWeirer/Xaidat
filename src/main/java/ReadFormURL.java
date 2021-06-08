@@ -41,7 +41,9 @@ public class ReadFormURL {
 //    }
     public HttpResponse<InputStream> http(){
         HttpResponse<InputStream> response = null;
+
         try {
+
 
             URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
             HttpRequest request = HttpRequest.newBuilder()
@@ -59,6 +61,7 @@ public class ReadFormURL {
             //System.out.println(request);
 
 
+
              response  = HttpClient
                     .newBuilder()
                     .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -66,7 +69,7 @@ public class ReadFormURL {
                     .build()
                     .send(request, HttpResponse.BodyHandlers.ofInputStream());
 
-
+            //;
             //System.out.println(response);
             HttpHeaders responseHeaders = response.headers();
             //System.out.println(responseHeaders);
@@ -81,6 +84,8 @@ public class ReadFormURL {
         }
         return response;
     }
+
+
 }
 
 
