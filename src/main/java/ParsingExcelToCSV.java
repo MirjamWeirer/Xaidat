@@ -63,15 +63,15 @@ public class ParsingExcelToCSV {
                     .proxy(ProxySelector.getDefault())
                     .build()
                     .send(request,HttpResponse.BodyHandlers.ofInputStream());
-            //FileUtils.copyURLToFile(,new File("timeline.csv"));
+
 
             System.out.println(response);
             HttpHeaders responseHeaders = response.headers();
             System.out.println(responseHeaders);
-//            HttpResponse<String> file =  response;
+
 
             Reader in = new InputStreamReader(response.body());
-//            Reader in = new FileReader(String.valueOf(file));
+
             Iterable<CSVRecord> records = CSVFormat.EXCEL
                     .withDelimiter(';')
                     .withHeader("Datum","BundeslandID","Bevölkerung","Name","GemeldeteImpfungenLaender","GemeldeteImpfungenLaenderPro100")
