@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class InputStreamCsv {
     private static Logger log = LoggerFactory.getLogger(InputStreamCsv.class);
@@ -36,14 +40,9 @@ public class InputStreamCsv {
 
     }
 
-    public static void readResponse() {
-        Reader in = null;
+    public static List<String> readResponse(Reader in) {
+//        Reader in = null;
         try {
-            ReadFormURL read = new ReadFormURL();
-
-            in = new InputStreamReader(read.http().body());
-
-
             Iterable<CSVRecord> records = null;
 
             records = CSVFormat.EXCEL
@@ -60,12 +59,13 @@ public class InputStreamCsv {
                 String reportVaccinationsPerStatePer100 = record.get("GemeldeteImpfungenLaenderPro100");
                 System.out.println(date + " " + stateID + " " + population + " " + name + " " + reportVaccinationsPerState + " " + reportVaccinationsPerStatePer100);
             }
-            synchronized (read) {
-                read.notify();
-                read.wait(5000);
-                read.notifyAll();
-            }
-        } catch (IOException | InterruptedException e) {
+//            synchronized (read) {
+//                read.notify();
+//                read.wait(5000);
+//                read.notifyAll();
+//            }
+            //Thread.sleep(5000);
+        } catch (IOException e){//| InterruptedException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -75,6 +75,7 @@ public class InputStreamCsv {
                 e.printStackTrace();
             }
         }
+        return List.of();
     }
 
 }
