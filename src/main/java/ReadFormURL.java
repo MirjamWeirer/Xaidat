@@ -43,8 +43,6 @@ public class ReadFormURL {
         HttpResponse<InputStream> response = null;
 
         try {
-
-
             URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(uri)

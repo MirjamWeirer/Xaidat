@@ -16,7 +16,6 @@ public class InputStreamCsv {
             System.out.println("Response: " + i);
             System.out.println(LocalDateTime.now());
             readResponse();
-
         }
 
     }
