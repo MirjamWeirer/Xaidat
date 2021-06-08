@@ -12,11 +12,27 @@ public class InputStreamCsv {
     private static Logger log = LoggerFactory.getLogger(InputStreamCsv.class);
 
     public static void main(String[] args) {
-        for (int i = 0; i < 6; i++){
-            System.out.println("Response: " + i);
-            System.out.println(LocalDateTime.now());
-            readResponse();
-        }
+        Timer timer = new Timer("WebQueries");
+        ReadFormURL read = new ReadFormURL();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int counter = 0;
+            @Override
+            public void run() {
+                for (int i = 0; i < 6; i++){
+                    System.out.println("Response: " + counter);
+                    System.out.println(LocalDateTime.now());
+
+                    Reader in = new InputStreamReader(read.http().body());
+                    readResponse(in);
+                    counter += 1;
+                }
+            }
+        }, new Date(),
+                5000);
+
+
+
 
     }
 
