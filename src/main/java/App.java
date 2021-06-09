@@ -5,6 +5,7 @@ import com.xaidat.caduceus.Tags;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
@@ -17,10 +18,12 @@ import java.util.TimerTask;
 public class App {
     public static Logger log = LoggerFactory.getLogger(App.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException {
+        URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
+
         Timer timer = new Timer("WebQueries");
-        ReadFormURL read = new ReadFormURL();
-        Reader in = new InputStreamReader(read.http().body());
+        ReadFormURL readFormURL = new ReadFormURL(uri);
+
         CaduceusAgent agent = Caduceus.optionalAgent();
 
         agent.notify(
@@ -29,18 +32,6 @@ public class App {
                 "BODY",
                 Tags.empty(),
                 Properties.empty()
-        );
-
-        agent.notify(
-                "ERROR",
-                "Could not parse CSV file",
-                "",
-                Tags.of("transient", "ganz schlimm"),
-                Properties
-                        .of("httpStatus", 418)
-                        .p("message", "I'm a teapot")
-                        .p("url", URI.create("http://www.example.com/obviously_wrong"))
-                .p("timestamp", Instant.now())
         );
 
         agent.notify(

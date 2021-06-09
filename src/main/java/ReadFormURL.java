@@ -13,40 +13,34 @@ import java.net.http.HttpResponse;
 public class ReadFormURL {
     private static final Logger log = LoggerFactory.getLogger(ReadFormURL.class);
 
-    public static HttpResponse<InputStream> http(){
-        HttpResponse<InputStream> response = null;
+    private final URI uri;
+    private final HttpClient client;
 
+    public ReadFormURL(URI uri) {
+        this.uri = uri;
+        this.client = HttpClient
+                .newBuilder()
+                .followRedirects(HttpClient.Redirect.ALWAYS)
+                .proxy(ProxySelector.getDefault())
+                .build();
+    }
+
+
+    public HttpResponse<InputStream> http() throws InterruptedException {
+        HttpResponse<InputStream> response = null;
         try {
-            URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(uri)
                     .GET()
                     .build();
 
-            log.trace("overwhelmingly detailed");
-            log.debug("Sent request to {} and received {}", uri, request);
-            log.info("Send request to server for csv");
-            log.warn("Could not connect to server");
-            log.error("Something is very wrong");
+            response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
 
-             response  = HttpClient
-                    .newBuilder()
-                    .followRedirects(HttpClient.Redirect.ALWAYS)
-                    .proxy(ProxySelector.getDefault())
-                    .build()
-                    .send(request, HttpResponse.BodyHandlers.ofInputStream());
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.info("Error while accessing csv data", e);
         }
         return response;
     }
-
-
 }
 
 

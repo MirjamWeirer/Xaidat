@@ -41,6 +41,7 @@ public class InputStreamCsv {
                 );
                 System.out.println(record);
             }
+            log.info("Read {} records from request", list.size());
         } catch (IOException e){
             e.printStackTrace();
         } finally {
