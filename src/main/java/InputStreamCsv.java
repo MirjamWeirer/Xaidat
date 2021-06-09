@@ -16,6 +16,7 @@ public class InputStreamCsv {
         try {
             Iterable<CSVRecord>records = CSVFormat.EXCEL
                     .withDelimiter(';')
+                    .withSkipHeaderRecord()
                     .withHeader("Datum", "BundeslandID", "Bevölkerung", "Name", "GemeldeteImpfungenLaender", "GemeldeteImpfungenLaenderPro100")
                     .parse(in);
 
@@ -23,13 +24,7 @@ public class InputStreamCsv {
                 list.add(record);
                 System.out.println(record);
             }
-//            synchronized (read) {
-//                read.notify();
-//                read.wait(5000);
-//                read.notifyAll();
-//            }
-            //Thread.sleep(5000);
-        } catch (IOException e){//| InterruptedException e) {
+        } catch (IOException e){
             e.printStackTrace();
         } finally {
             try {
