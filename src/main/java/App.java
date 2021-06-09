@@ -14,6 +14,39 @@ public class App {
     public static void main(String[] args) {
         Timer timer = new Timer("WebQueries");
         ReadFormURL read = new ReadFormURL();
+        Reader in = new InputStreamReader(read.http().body());
+        CaduceusAgent agent = Caduceus.optionalAgent();
+
+        agent.notify(
+                "CATEGORY",
+                "SUBJECT",
+                "BODY",
+                Tags.empty(),
+                Properties.empty()
+        );
+
+        agent.notify(
+                "ERROR",
+                "Could not parse CSV file",
+                "",
+                Tags.of("transient", "ganz schlimm"),
+                Properties
+                        .of("httpStatus", 418)
+                        .p("message", "I'm a teapot")
+                        .p("url", URI.create("http://www.example.com/obviously_wrong"))
+                .p("timestamp", Instant.now())
+        );
+
+        agent.notify(
+                "ERROR",
+                "Cold not find URI",
+                "",
+                Tags.of("URI not found"),
+                Properties
+                        .of("httpstatus",400)
+                        .p("message","URI not found")
+                        .p("url",URI.create("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv"))
+        );
 
         timer.scheduleAtFixedRate(new TimerTask() {
             int counter = 0;
