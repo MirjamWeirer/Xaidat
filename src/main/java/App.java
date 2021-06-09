@@ -22,7 +22,7 @@ public class App {
 
     public static void main(String[] args) throws URISyntaxException {
         URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
-       // URI uri = new URI("https://test.at");
+        //URI uri = new URI("https://test.at"); for test agent.notify() error
         Timer timer = new Timer("WebQueries");
         ReadFormURL readFormURL = new ReadFormURL(uri);
 
@@ -54,7 +54,7 @@ public class App {
                                 "",
                                 Tags.of("URI not found"),
                                 Properties
-                                        .of("httpstatus",response.statusCode())
+                                        .of("httpstatus","is not 200")
                                         .p("message","URI not found")
                                         .p("url",uri)
                         );
