@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -46,7 +47,12 @@ public class App {
             public void run() {
                 try {
                     log.info("Request #{}", counter);
-                    HttpResponse<InputStream> response = readFormURL.http();
+                    HttpResponse<InputStream> response = null;
+                    try {
+                        response = readFormURL.http();
+                    } catch (IOException e) {
+                        log.info("Error while accessing csv data", e);
+                    }
                     if (response == null) {
                         agent.notify(
                                 "ERROR",
@@ -70,6 +76,8 @@ public class App {
                                         .of("http statsucode", response.statusCode())
                                         .p("message", response)
                                         .p("url",uri)
+
+
                         );
                         return;
                     }

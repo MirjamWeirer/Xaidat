@@ -25,7 +25,7 @@ public class ReadFormURL {
     }
 
 
-    public HttpResponse<InputStream> http() throws InterruptedException {
+    public HttpResponse<InputStream> http() throws InterruptedException, IOException {
         HttpResponse<InputStream> response = null;
         try {
             HttpRequest request = HttpRequest.newBuilder()
@@ -37,6 +37,7 @@ public class ReadFormURL {
 
         } catch (IOException e) {
             log.info("Error while accessing csv data", e);
+            throw new IOException(e);
         }
         return response;
     }
