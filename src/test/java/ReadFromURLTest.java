@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 public class ReadFromURLTest {
     @Test
     public void httpRequest() throws URISyntaxException {
+
         URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
@@ -27,4 +28,5 @@ public class ReadFromURLTest {
         InputStream result = ReadFormURL.http().body();
         Assert.assertEquals(ReadFormURL.http().body().read(),result.read());
     }
+
 }

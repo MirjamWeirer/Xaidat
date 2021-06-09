@@ -1,8 +1,14 @@
+import com.xaidat.caduceus.Caduceus;
+import com.xaidat.caduceus.CaduceusAgent;
+import com.xaidat.caduceus.Properties;
+import com.xaidat.caduceus.Tags;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URI;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Timer;
@@ -55,10 +61,9 @@ public class App {
             public void run() {
                 System.out.println("Response: " + counter);
                 System.out.println(LocalDateTime.now());
-
-                Reader in = new InputStreamReader(read.http().body());
                 InputStreamCsv.readResponse(in);
                 counter += 1;
+
             }
         }, new Date(),
                5000);
