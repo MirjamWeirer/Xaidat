@@ -13,7 +13,7 @@ import java.net.http.HttpResponse;
 public class ReadFormURL {
     private static final Logger log = LoggerFactory.getLogger(ReadFormURL.class);
 
-    public HttpResponse<InputStream> http(){
+    public static HttpResponse<InputStream> http(){
         HttpResponse<InputStream> response = null;
 
         try {
