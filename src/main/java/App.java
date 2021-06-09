@@ -2,6 +2,7 @@ import com.xaidat.caduceus.Caduceus;
 import com.xaidat.caduceus.CaduceusAgent;
 import com.xaidat.caduceus.Properties;
 import com.xaidat.caduceus.Tags;
+import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,9 +10,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
-import java.time.Instant;
-import java.time.LocalDateTime;
+import java.net.URISyntaxException;
+import java.net.http.HttpResponse;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,14 +27,15 @@ public class App {
         ReadFormURL readFormURL = new ReadFormURL(uri);
 
         CaduceusAgent agent = Caduceus.optionalAgent();
-
-        agent.notify(
-                "CATEGORY",
-                "SUBJECT",
-                "BODY",
-                Tags.empty(),
-                Properties.empty()
-        );
+        agent.addGlobalTags(Tags.of("TESTING"));
+// Just as a reminder for the notify() parameters
+//        agent.notify(
+//                "CATEGORY",
+//                "SUBJECT",
+//                "BODY",
+//                Tags.empty(),
+//                Properties.empty()
+//        );
 
         agent.notify(
                 "ERROR",
@@ -50,11 +53,37 @@ public class App {
 
             @Override
             public void run() {
-                System.out.println("Response: " + counter);
-                System.out.println(LocalDateTime.now());
-                InputStreamCsv.readResponse(in);
-                counter += 1;
-
+                try {
+                    log.info("Request #{}", counter);
+                    HttpResponse<InputStream> response = readFormURL.http();
+                    if (response == null) {
+                        //TODO send error event
+                        return;
+                    }
+                    if (response.statusCode() != 200) {
+                        //TODO send error event
+                        return;
+                    }
+                    Reader in = new InputStreamReader(response.body());
+                    List<CSVRecord> records = InputStreamCsv.readResponse(in);
+                    for (CSVRecord record : records) {
+                        agent.notify(
+                                "Data",
+                                "Datas from CSV file",
+                                "",
+                                Tags.of("parse CSV file"),
+                                Properties
+                                        .of("Datum", record.get(0))
+                                        .p("Bevölkerung", record.get(1))
+                                        .p("Name", record.get(2))
+                                        .p("GemeldeteImpfungenLaender", record.get(3))
+                                        .p("GemeldeteImpfungenLaenderPro100", record.get(4))
+                        );
+                    }
+                    counter += 1;
+                } catch (InterruptedException e) {
+                    log.debug("Thread was interrupted.");
+                }
             }
         }, new Date(),
                5000);

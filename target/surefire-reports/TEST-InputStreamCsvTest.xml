@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="InputStreamCsvTest" time="0.283" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="InputStreamCsvTest" time="1.771" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\mirja\Xaidat\target\test-classes;C:\Users\mirja\Xaidat\target\classes;C:\Users\mirja\.m2\repository\org\apache\commons\commons-csv\1.8\commons-csv-1.8.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-api\1.7.12\slf4j-api-1.7.12.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-log4j12\1.7.12\slf4j-log4j12-1.7.12.jar;C:\Users\mirja\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-api\2.6.1\caduceus-agent-api-2.6.1.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-core\2.6.1\caduceus-agent-core-2.6.1.jar;C:\Users\mirja\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\mirja\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="C:\Users\mirja\Xaidat\target\test-classes;C:\Users\mirja\Xaidat\target\classes;C:\Users\mirja\.m2\repository\org\apache\commons\commons-csv\1.8\commons-csv-1.8.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-api\1.7.12\slf4j-api-1.7.12.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-log4j12\1.7.12\slf4j-log4j12-1.7.12.jar;C:\Users\mirja\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-api\2.6.1\caduceus-agent-api-2.6.1.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-core\2.6.1\caduceus-agent-core-2.6.1.jar;C:\Users\mirja\.m2\repository\com\xaidat\library\xaidat-basic\1.5.0\xaidat-basic-1.5.0.jar;C:\Users\mirja\.m2\repository\com\xaidat\cache\2.1.3\cache-2.1.3.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.5\jackson-databind-2.9.5.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.5\jackson-core-2.9.5.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\module\jackson-module-afterburner\2.9.5\jackson-module-afterburner-2.9.5.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.9.5\jackson-datatype-jsr310-2.9.5.jar;C:\Users\mirja\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\mirja\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Azul Systems, Inc."/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -17,9 +17,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="AT"/>
     <property name="sun.boot.library.path" value="C:\Program Files\zulu-11\bin"/>
-    <property name="sun.java.command" value="C:\Users\mirja\AppData\Local\Temp\surefire6168538957230836604\surefirebooter16031506968701589452.jar C:\Users\mirja\AppData\Local\Temp\surefire6168538957230836604 2021-06-09T11-36-42_304-jvmRun1 surefire12485427425594405050tmp surefire_015639412199936716176tmp"/>
+    <property name="sun.java.command" value="C:\Users\mirja\AppData\Local\Temp\surefire14135454639960826648\surefirebooter12864621859553272447.jar C:\Users\mirja\AppData\Local\Temp\surefire14135454639960826648 2021-06-09T13-35-34_209-jvmRun1 surefire4324624262334494647tmp surefire_014141227883253826093tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\mirja\Xaidat\target\test-classes;C:\Users\mirja\Xaidat\target\classes;C:\Users\mirja\.m2\repository\org\apache\commons\commons-csv\1.8\commons-csv-1.8.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-api\1.7.12\slf4j-api-1.7.12.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-log4j12\1.7.12\slf4j-log4j12-1.7.12.jar;C:\Users\mirja\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-api\2.6.1\caduceus-agent-api-2.6.1.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-core\2.6.1\caduceus-agent-core-2.6.1.jar;C:\Users\mirja\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\mirja\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\mirja\Xaidat\target\test-classes;C:\Users\mirja\Xaidat\target\classes;C:\Users\mirja\.m2\repository\org\apache\commons\commons-csv\1.8\commons-csv-1.8.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-api\1.7.12\slf4j-api-1.7.12.jar;C:\Users\mirja\.m2\repository\org\slf4j\slf4j-log4j12\1.7.12\slf4j-log4j12-1.7.12.jar;C:\Users\mirja\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-api\2.6.1\caduceus-agent-api-2.6.1.jar;C:\Users\mirja\.m2\repository\com\xaidat\caduceus\caduceus-agent-core\2.6.1\caduceus-agent-core-2.6.1.jar;C:\Users\mirja\.m2\repository\com\xaidat\library\xaidat-basic\1.5.0\xaidat-basic-1.5.0.jar;C:\Users\mirja\.m2\repository\com\xaidat\cache\2.1.3\cache-2.1.3.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.5\jackson-databind-2.9.5.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.5\jackson-core-2.9.5.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\module\jackson-module-afterburner\2.9.5\jackson-module-afterburner-2.9.5.jar;C:\Users\mirja\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.9.5\jackson-datatype-jsr310-2.9.5.jar;C:\Users\mirja\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\mirja\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\mirja"/>
     <property name="user.language" value="de"/>
@@ -34,7 +34,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="jdk.vendor.version" value="Zulu11.48+21-CA"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\mirja\AppData\Local\Temp\surefire6168538957230836604\surefirebooter16031506968701589452.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\mirja\AppData\Local\Temp\surefire14135454639960826648\surefirebooter12864621859553272447.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.11+9-LTS"/>
@@ -61,9 +61,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="smokeTest" classname="InputStreamCsvTest" time="0.172"/>
-  <testcase name="readResponseReturnsOneLineForReaderWithOneLineCSV" classname="InputStreamCsvTest" time="0.005"/>
-  <testcase name="readResponseReturnsTwoLinesForReaderWithTwoLineCSV" classname="InputStreamCsvTest" time="0.011"/>
+  <testcase name="smokeTest" classname="InputStreamCsvTest" time="0.971"/>
+  <testcase name="readResponseReturnsOneLineForReaderWithOneLineCSV" classname="InputStreamCsvTest" time="0.618"/>
+  <testcase name="readResponseReturnsTwoLinesForReaderWithTwoLineCSV" classname="InputStreamCsvTest" time="0.023"/>
   <testcase name="anotherSmokeTest" classname="InputStreamCsvTest" time="0"/>
   <testcase name="readResponseReturnsEmptyListForEmptyReader" classname="InputStreamCsvTest" time="0"/>
 </testsuite>
