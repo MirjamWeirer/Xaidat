@@ -22,7 +22,7 @@ public class App {
 
     public static void main(String[] args) throws URISyntaxException {
         URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
-
+       // URI uri = new URI("https://test.at");
         Timer timer = new Timer("WebQueries");
         ReadFormURL readFormURL = new ReadFormURL(uri);
 
@@ -37,16 +37,7 @@ public class App {
 //                Properties.empty()
 //        );
 
-        agent.notify(
-                "ERROR",
-                "Cold not find URI",
-                "",
-                Tags.of("URI not found"),
-                Properties
-                        .of("httpstatus",400)
-                        .p("message","URI not found")
-                        .p("url",URI.create("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv"))
-        );
+
 
         timer.scheduleAtFixedRate(new TimerTask() {
             int counter = 0;
@@ -57,11 +48,29 @@ public class App {
                     log.info("Request #{}", counter);
                     HttpResponse<InputStream> response = readFormURL.http();
                     if (response == null) {
-                        //TODO send error event
+                        agent.notify(
+                                "ERROR",
+                                "Cold not find URI",
+                                "",
+                                Tags.of("URI not found"),
+                                Properties
+                                        .of("httpstatus",response.statusCode())
+                                        .p("message","URI not found")
+                                        .p("url",uri)
+                        );
                         return;
                     }
                     if (response.statusCode() != 200) {
-                        //TODO send error event
+                        agent.notify(
+                                "ERROR",
+                                "HTTP Response was not successful",
+                                "",
+                                Tags.of("Response has another statuscode then 200"),
+                                Properties
+                                        .of("http statsucode", response.statusCode())
+                                        .p("message", response)
+                                        .p("url",uri)
+                        );
                         return;
                     }
                     Reader in = new InputStreamReader(response.body());
