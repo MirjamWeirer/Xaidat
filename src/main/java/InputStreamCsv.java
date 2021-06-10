@@ -10,6 +10,14 @@ import java.util.List;
 
 public class InputStreamCsv {
     private static final Logger log = LoggerFactory.getLogger(InputStreamCsv.class);
+
+    /**
+     * Reads data from Reader in and converts it to a list of CSV records.
+     * This method closes "in" before returning.
+     *
+     * @param in data source to turn into CSV records
+     * @return all the CSV records
+     */
     public static List<CSVRecord> readResponse(Reader in) {
         List<CSVRecord> list = new ArrayList<>();
 
