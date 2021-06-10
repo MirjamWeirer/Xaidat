@@ -35,10 +35,10 @@ public class App {
 //                Properties.empty()
 //        );
 
-
-
         timer.scheduleAtFixedRate(new TimerTask() {
             int counter = 0;
+            int recordCounter = 0;
+            Map<String, String> lastSeenDates = new HashMap<>();
 
             @Override
             public void run() {
@@ -49,17 +49,15 @@ public class App {
                         response = readFormURL.http();
                     } catch (IOException e) {
                         log.info("Error while accessing csv data", e);
-                    }
-                    if (response == null) {
                         agent.notify(
                                 "ERROR",
                                 "Cold not find URI",
                                 "",
                                 Tags.of("URI not found"),
                                 Properties
-                                        .of("httpstatus","is not 200")
-                                        .p("message","URI not found")
-                                        .p("url",uri)
+                                        .of("httpstatus", "is not 200")
+                                        .p("message", "URI not found")
+                                        .p("url", uri)
                         );
                         return;
                     }
@@ -72,35 +70,45 @@ public class App {
                                 Properties
                                         .of("http statsucode", response.statusCode())
                                         .p("message", response)
-                                        .p("url",uri)
-
-
+                                        .p("url", uri)
                         );
                         return;
                     }
                     Reader in = new InputStreamReader(response.body());
                     List<CSVRecord> records = InputStreamCsv.readResponse(in);
                     for (CSVRecord record : records) {
+                        String date = record.get("Datum");
+                        String country = record.get("Name");
+                        String lastDateSeen = lastSeenDates.getOrDefault(country, "2021-01-14T23:59:59+01:00");
+                        if (date.compareTo(lastDateSeen) <1) {
+                            log.debug("date {} already seen", date);
+                            continue;
+                        }
                         agent.notify(
                                 "Data",
                                 "Datas from CSV file",
                                 "",
                                 Tags.of("parse CSV file"),
                                 Properties
-                                        .of("Datum", record.get(0))
-                                        .p("Bevölkerung", record.get(1))
-                                        .p("Name", record.get(2))
-                                        .p("GemeldeteImpfungenLaender", record.get(3))
-                                        .p("GemeldeteImpfungenLaenderPro100", record.get(4))
+                                        .of("Datum", record.get("Datum"))
+                                        .p("BundeslandID",record.get("BundeslandID"))
+                                        .p("Bevölkerung", record.get("Bevölkerung"))
+                                        .p("Name", record.get("Name"))
+                                        .p("GemeldeteImpfungenLaender", record.get("GemeldeteImpfungenLaender"))
+                                        .p("GemeldeteImpfungenLaenderPro100", record.get("GemeldeteImpfungenLaenderPro100"))
                         );
+                        recordCounter += 1;
+                        lastSeenDates.put(country, date);
+                        //log.info("Read record: {}", record); for testing to on the console the records
                     }
+                    log.info("new records: {}",recordCounter);
                     counter += 1;
                 } catch (InterruptedException e) {
                     log.debug("Thread was interrupted.");
                 }
             }
-        }, new Date(),
-               5000);
+           }, new Date(),
+                5000);
 
     }
 }
