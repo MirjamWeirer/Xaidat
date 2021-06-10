@@ -88,7 +88,7 @@ public class TimeForResponse {
                         );
                         recordCounter += 1;
                         lastSeenDates.put(country, date);
-                        //log.info("Read record: {}", record); for testing to on the console the records
+                        log.info("Read record: {}", record); //for testing to on the console the records
                     }
                     log.info("new records: {}",recordCounter);
                     counter += 1;
