@@ -31,8 +31,6 @@ public class InputStreamCsv {
 
             for (CSVRecord record : records) {
                 list.add(record);
-
-                log.trace("Read record: {}", record);
             }
 
             log.info("Read {} records from request", list.size());

@@ -17,16 +17,17 @@ public class TimeForResponse {
     private static final Logger log = LoggerFactory.getLogger(TimeForResponse.class);
 
     /**
-     * Make Response every 5 secounds from the URL and makes an event from the new CSV Records
+     * Make Response every 5 seconds from the URL and makes an event from the new CSV Records
      * @param timer time for response
      * @param readFormURL reads from the URL and make request and response, is for the ReadFromURL class
      * @param agent for the events for Caduceus
      * @param uri the Url
      */
     public static void timeResponse(Timer timer, ReadFormURL readFormURL, CaduceusAgent agent, URI uri){
-        timer.scheduleAtFixedRate(new TimerTask() {
+        timer.schedule(new TimerTask() {
             int counter = 0;
             int recordCounter = 0;
+            int newRecord = 0;
             Map<String, String> lastSeenDates = new HashMap<>();
 
             @Override
@@ -66,6 +67,7 @@ public class TimeForResponse {
                     Reader in = new InputStreamReader(response.body());
                     List<CSVRecord> records = InputStreamCsv.readResponse(in);
                     for (CSVRecord record : records) {
+
                         String date = record.get("Datum");
                         String country = record.get("Name");
                         String lastDateSeen = lastSeenDates.getOrDefault(country, "2021-01-14T23:59:59+01:00");
@@ -86,11 +88,14 @@ public class TimeForResponse {
                                         .p("GemeldeteImpfungenLaender", record.get("GemeldeteImpfungenLaender"))
                                         .p("GemeldeteImpfungenLaenderPro100", record.get("GemeldeteImpfungenLaenderPro100"))
                         );
+                        newRecord++;
+                        log.info("new Records: {}",newRecord);
                         recordCounter += 1;
                         lastSeenDates.put(country, date);
                         log.info("Read record: {}", record); //for testing to on the console the records
                     }
-                    log.info("new records: {}",recordCounter);
+
+                    log.info("Total Records: {}",recordCounter);
                     counter += 1;
                 } catch (InterruptedException e) {
                     log.debug("Thread was interrupted.");
