@@ -34,23 +34,7 @@ public class TimeForResponse {
             public void run() {
                 try {
                     log.info("Request #{}", counter);
-                    HttpResponse<InputStream> response = null;
-                    try {
-                        response = readFormURL.http();
-                    } catch (IOException e) {
-                        log.info("Error while accessing csv data", e);
-                        agent.notify(
-                                "ERROR",
-                                "Cold not find URI",
-                                "",
-                                Tags.of("URI not found"),
-                                Properties
-                                        .of("httpstatus", "is not 200")
-                                        .p("message", "URI not found")
-                                        .p("url", uri)
-                        );
-                        return;
-                    }
+                    HttpResponse<InputStream> response = readFormURL.http();
                     if (response.statusCode() != 200) {
                         agent.notify(
                                 "ERROR",
@@ -92,16 +76,31 @@ public class TimeForResponse {
                         log.info("new Records: {}",newRecord);
                         recordCounter += 1;
                         lastSeenDates.put(country, date);
-                        log.info("Read record: {}", record); //for testing to on the console the records
+                        log.debug("Read record: {}", record); //for testing to on the console the records
+
                     }
 
                     log.info("Total Records: {}",recordCounter);
                     counter += 1;
                 } catch (InterruptedException e) {
                     log.debug("Thread was interrupted.");
+                } catch (IOException e) {
+                    log.info("Error while accessing csv data", e);
+                    agent.notify(
+                            "ERROR",
+                            "Cold not find URI",
+                            "",
+                            Tags.of("URI not found"),
+                            Properties
+                                    .of("httpstatus", "is not 200")
+                                    .p("message", "URI not found")
+                                    .p("url", uri)
+                    );
                 }
             }
         }, new Date(),
                 5000);
+
+
     }
 }
