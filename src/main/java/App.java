@@ -22,9 +22,9 @@ public class App {
         //URI uri = new URI("https://test.at"); for test agent.notify() error
         Timer timer = new Timer("WebQueries");
         ReadFormURL readFormURL = new ReadFormURL(uri);
-
         CaduceusAgent agent = Caduceus.optionalAgent();
         agent.addGlobalTags(Tags.of("TESTING"));
+        TimeForResponse timeForResponse = new TimeForResponse();
 // Just as a reminder for the notify() parameters
 //        agent.notify(
 //                "CATEGORY",
@@ -33,6 +33,6 @@ public class App {
 //                Tags.empty(),
 //                Properties.empty()
 //        );
-        TimeForResponse.timeResponse(timer,readFormURL,agent,uri);
+       timeForResponse.timeResponse(timer,readFormURL,agent,uri);
     }
 }

@@ -29,6 +29,7 @@ public class InputStreamCsv {
 
             for (CSVRecord record : records) {
                 list.add(record);
+
             }
 
             log.info("Read {} records from request", list.size());
@@ -39,7 +40,7 @@ public class InputStreamCsv {
                 in.close();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                log.warn("Reade could not closed",e);
             }
         }
         return list;

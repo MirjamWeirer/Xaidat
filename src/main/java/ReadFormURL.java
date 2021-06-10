@@ -32,7 +32,7 @@ public class ReadFormURL {
      * @throws IOException
      */
 
-    public HttpResponse<InputStream> http() throws InterruptedException, IOException {
+    public HttpResponse<InputStream> httpResponse() throws InterruptedException, IOException {
         HttpResponse<InputStream> response = null;
         try {
             HttpRequest request = HttpRequest.newBuilder()
