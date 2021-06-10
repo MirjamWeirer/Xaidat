@@ -12,7 +12,13 @@ public class App {
     public static Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) throws URISyntaxException {
-        URI uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
+        URI uri;
+        if (args.length == 0) {
+            log.info("User did not specify URL, use default");
+            uri = new URI("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv");
+        } else {
+            uri = new URI(args[0]);
+        }
         //URI uri = new URI("https://test.at"); for test agent.notify() error
         Timer timer = new Timer("WebQueries");
         ReadFormURL readFormURL = new ReadFormURL(uri);

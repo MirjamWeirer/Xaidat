@@ -44,7 +44,7 @@ public class ReadFormURL {
 
         } catch (IOException e) {
             log.info("Error while accessing csv data", e);
-            throw new IOException(e);
+            throw e;
         }
         return response;
     }

@@ -20,8 +20,6 @@ public class InputStreamCsv {
      */
     public static List<CSVRecord> readResponse(Reader in) {
         List<CSVRecord> list = new ArrayList<>();
-
-
         try {
             Iterable<CSVRecord>records = CSVFormat.EXCEL
                     .withDelimiter(';')
@@ -35,7 +33,7 @@ public class InputStreamCsv {
 
             log.info("Read {} records from request", list.size());
         } catch (IOException e){
-            e.printStackTrace();
+            log.warn("Error while...", e);
         } finally {
             try {
                 in.close();
