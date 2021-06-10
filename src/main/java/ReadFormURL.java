@@ -10,6 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ReadFormURL {
+
     private static final Logger log = LoggerFactory.getLogger(ReadFormURL.class);
 
     private final URI uri;
@@ -24,6 +25,12 @@ public class ReadFormURL {
                 .build();
     }
 
+    /**
+     * sends a http request and safe it as a http response
+     * @return the response from the http client
+     * @throws InterruptedException
+     * @throws IOException
+     */
 
     public HttpResponse<InputStream> http() throws InterruptedException, IOException {
         HttpResponse<InputStream> response = null;
