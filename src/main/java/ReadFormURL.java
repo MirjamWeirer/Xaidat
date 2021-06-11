@@ -28,12 +28,12 @@ public class ReadFormURL {
     /**
      * sends a http request and safe it as a http response
      * @return the response from the http client
-     * @throws InterruptedException
-     * @throws IOException
+     * @throws InterruptedException thread was interrupted
+     * @throws IOException when a error by accessing csv data
      */
 
     public HttpResponse<InputStream> sendHttpResponse() throws InterruptedException, IOException {
-        HttpResponse<InputStream> response = null;
+        HttpResponse<InputStream> response;
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(uri)
