@@ -1,6 +1,8 @@
 import com.xaidat.caduceus.Caduceus;
 import com.xaidat.caduceus.CaduceusAgent;
 import com.xaidat.caduceus.Tags;
+import com.xaidat.zam.vaccmonitor.ReadFormURL;
+import com.xaidat.zam.vaccmonitor.TimeForResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,3 +1,5 @@
+package com.xaidat.zam.vaccmonitor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,8 +28,8 @@ public class ReadFormURL {
     }
 
     /**
-     * sends a http request and safe it as a http response
-     * @return the response from the http client
+     * Sends a http request and safe it as a http response.
+     * @return the body of a the request
      * @throws InterruptedException thread was interrupted
      * @throws IOException when a error by accessing csv data
      */

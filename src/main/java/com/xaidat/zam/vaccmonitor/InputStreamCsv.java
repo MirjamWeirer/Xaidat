@@ -1,3 +1,5 @@
+package com.xaidat.zam.vaccmonitor;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
@@ -18,7 +20,7 @@ public class InputStreamCsv {
      * @param in data source to turn into CSV records
      * @return all the CSV records
      */
-    public static List<CSVRecord> readResponse(Reader in) {
+    public  List<CSVRecord> readResponse(Reader in) {
         List<CSVRecord> list = new ArrayList<>();
         try {
             Iterable<CSVRecord>records = CSVFormat.EXCEL
