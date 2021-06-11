@@ -19,12 +19,13 @@ public class TimeForResponse {
     private static final Logger log = LoggerFactory.getLogger(TimeForResponse.class);
     static final String date = "Datum";
     static final String countryID = "BundeslandID";
-    static final String populaton ="Bevölkerung";
+    static final String population ="Bevölkerung";
     static final String country = "Name";
     static final String vaccination ="GemeldeteImpfungenLaender";
     static final String vaccinationPer100 ="GemeldeteImpfungenLaenderPro100";
+    private static InputStreamCsv list = new InputStreamCsv();
     /**
-     * Make Response every 5 seconds from the URL and makes an event from the new CSV Records
+     * Make Response every 5 seconds from the URL and makes an event from the new CSV Records.
      * @param timer time to send request and become response
      * @param readFormURL for the method sendHttpResponse()
      * @param agent for Caduceus events
@@ -50,7 +51,7 @@ public class TimeForResponse {
         final Map<String, String> lastSeenDates;
 
         /**
-         * Sends Events to Caduceus
+         * Sends Events to Caduceus and methods for MyTimerTask.
          * @param readFormURL reads from the URL and make request and response, is for the ReadFromURL class
          * @param agent for the events for Caduceus
          * @param uri the Url
@@ -86,7 +87,7 @@ public class TimeForResponse {
                     return;
                 }
                 Reader in = new InputStreamReader(response.body());
-                List<CSVRecord> records = InputStreamCsv.readResponse(in);
+                List<CSVRecord> records = list.readResponse(in);
                 for (CSVRecord record : records) {
 
                     String date = record.get(TimeForResponse.date);
@@ -104,7 +105,7 @@ public class TimeForResponse {
                             Properties
                                     .of(TimeForResponse.date, record.get(TimeForResponse.date))
                                     .p(TimeForResponse.countryID,record.get(TimeForResponse.countryID))
-                                    .p(TimeForResponse.populaton, record.get(TimeForResponse.populaton))
+                                    .p(TimeForResponse.population, record.get(TimeForResponse.population))
                                     .p(TimeForResponse.country, record.get(TimeForResponse.country))
                                     .p(TimeForResponse.vaccination, record.get(TimeForResponse.vaccination))
                                     .p(TimeForResponse.vaccinationPer100, record.get(TimeForResponse.vaccinationPer100))
