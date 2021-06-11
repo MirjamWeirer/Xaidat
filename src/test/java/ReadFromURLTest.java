@@ -25,8 +25,8 @@ public class ReadFromURLTest {
     @Test
     public void httpResponse() throws Exception {
         ReadFormURL readFormURL = new ReadFormURL(URI.create("https://info.gesundheitsministerium.gv.at/data/timeline-bundeslaendermeldungen.csv"));
-        InputStream result = readFormURL.http().body();
-        Assert.assertEquals(readFormURL.http().body().read(),result.read());
+        InputStream result = readFormURL.sendHttpResponse().body();
+        Assert.assertEquals(readFormURL.sendHttpResponse().body().read(),result.read());
     }
 
 }

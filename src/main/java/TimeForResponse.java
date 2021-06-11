@@ -67,7 +67,7 @@ public class TimeForResponse {
 
             try {
                 log.info("Request #{}", counter);
-                HttpResponse<InputStream> response = readFormURL.http();
+                HttpResponse<InputStream> response = readFormURL.sendHttpResponse();
                 if (response.statusCode() != 200) {
                     agent.notify(
                             "ERROR",
