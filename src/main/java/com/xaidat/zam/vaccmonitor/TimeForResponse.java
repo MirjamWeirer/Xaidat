@@ -1,3 +1,5 @@
+package com.xaidat.zam.vaccmonitor;
+
 import com.xaidat.caduceus.CaduceusAgent;
 import com.xaidat.caduceus.Properties;
 import com.xaidat.caduceus.Tags;
