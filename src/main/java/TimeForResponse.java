@@ -23,10 +23,10 @@ public class TimeForResponse {
     static final String vaccinationPer100 ="GemeldeteImpfungenLaenderPro100";
     /**
      * Make Response every 5 seconds from the URL and makes an event from the new CSV Records
-     * @param timer
-     * @param readFormURL
-     * @param agent
-     * @param uri
+     * @param timer time to send request and become response
+     * @param readFormURL for the method sendHttpResponse()
+     * @param agent for Caduceus events
+     * @param uri to make request and response
      */
     public void timeResponse(Timer timer, ReadFormURL readFormURL, CaduceusAgent agent, URI uri){
         timer.schedule(new MyTimerTask(readFormURL, agent, uri),
@@ -35,6 +35,8 @@ public class TimeForResponse {
 
 
     }
+
+
 
     private static class MyTimerTask extends TimerTask {
         private final ReadFormURL readFormURL;
@@ -46,7 +48,7 @@ public class TimeForResponse {
         final Map<String, String> lastSeenDates;
 
         /**
-         *Make Response every 5 seconds from the URL and makes an event from the new CSV Records
+         * Sends Events to Caduceus
          * @param readFormURL reads from the URL and make request and response, is for the ReadFromURL class
          * @param agent for the events for Caduceus
          * @param uri the Url
